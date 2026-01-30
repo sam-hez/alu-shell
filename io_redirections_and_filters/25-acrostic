@@ -1,3 +1,2 @@
 #!/bin/bash
 perl -0777 -ne 'print uc join("", map { substr($_,0,1) } grep { length $_ } split(/\n/, $_) ), "\n"'
-}
