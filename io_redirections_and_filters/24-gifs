@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -type f -iname "*.gif" -print0 | xargs -0 -n1 basename | perl -lpe 's/(?<=.)\.[^.]+$//' | LC_ALL=C sort -f
+find . -type f -name "*.gif" -printf "%P\n" | rev | cut -d'/' -f1 | cut -d'.' -f2- | rev | LC_ALL=C sort -f
