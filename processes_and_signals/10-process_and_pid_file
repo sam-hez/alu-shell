@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Creates a PID file and handles signals
+
+PIDFILE="/var/run/myscript.pid"
+
+# Create PID file
+echo $$ > "$PIDFILE"
+
+# SIGINT handler
+trap 'echo "Y U no love me?!"' SIGINT
+
+# SIGTERM handler (print message but do not exit immediately)
+trap 'echo "I hate the kill command"; rm -f "$PIDFILE"; exit' SIGTERM
+
+# SIGQUIT handler (remove file and exit)
+trap 'rm -f "$PIDFILE"; exit' SIGQUIT
+
+# Infinite loop
+while true
+do
+    echo "To infinity and beyond"
+    sleep 2
+done
+
